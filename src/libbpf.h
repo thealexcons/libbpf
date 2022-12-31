@@ -67,8 +67,13 @@ LIBBPF_API const char *libbpf_bpf_attach_type_str(enum bpf_attach_type t);
  * @return Pointer to a static string identifying the link type. NULL is
  * returned for unknown **bpf_link_type** values.
  */
+#ifdef __cplusplus
+LIBBPF_API const char *libbpf_bpf_link_type_str(int t);
+#else
+enum bpf_link_type; /* defined in up-to-date linux/bpf.h */
 LIBBPF_API const char *libbpf_bpf_link_type_str(enum bpf_link_type t);
-
+#endif
+	
 /**
  * @brief **libbpf_bpf_map_type_str()** converts the provided map type value
  * into a textual representation.
